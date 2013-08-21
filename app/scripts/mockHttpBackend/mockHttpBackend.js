@@ -373,32 +373,6 @@ angular.module('confRegistrationWebApp')
       }
     ];
 
-    $httpBackend.whenGET(/^conferences\/?$/).respond(function () {
-      console.log(arguments);
-      var headers = {};
-      return [200, conferences, headers];
-    });
-    $httpBackend.whenPOST(/^conferences\/?$/).respond(function (verb, url, data) {
-      console.log(arguments);
-
-      var conference = angular.extend(angular.fromJson(data), { id: uuid() });
-
-      var headers = {
-        'Location': '/conferences/' + conference.id
-      };
-      return [201, conference, headers];
-    });
-    $httpBackend.whenGET(/^conferences\/[-a-zA-Z0-9]+\/?$/).respond(function (verb, url) {
-      console.log(arguments);
-
-      var conferenceId = url.split('/')[1];
-
-      var conference = _.find(conferences, function (conference) {
-        return angular.equals(conference.id, conferenceId);
-      });
-
-      return [200, conference, {}];
-    });
     $httpBackend.whenPUT(/^conferences\/[-a-zA-Z0-9]+\/?$/).respond(function (verb, url, data) {
       console.log(arguments);
 
