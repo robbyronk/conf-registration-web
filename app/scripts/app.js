@@ -10,6 +10,13 @@ angular.module('confRegistrationWebApp', ['ngResource', 'ngCookies', 'ui.bootstr
           enforceAuth: 'enforceAuth'
         }
       })
+      .when('/profile', {
+        templateUrl: 'views/userProfile.html',
+        controller: 'ProfileCtrl',
+        resolve: {
+          enforceAuth: 'enforceAuth'
+        }
+      })
       .when('/wizard/:conferenceId', {
         templateUrl: 'views/admin-wizard.html',
         controller: 'AdminWizardCtrl',
